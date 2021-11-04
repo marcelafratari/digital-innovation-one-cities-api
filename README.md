@@ -1,4 +1,5 @@
 # Cities API
+Final project for the course NTT DATA Quality Assurance Beginner of Digital Innovation One.
 
 ## Requirements
 
@@ -7,9 +8,8 @@
 * Java 8
 * Docker
 * IntelliJ Community
-* Heroku CLI
 
-## DataBase
+## Setup
 
 ### Postgres
 
@@ -19,12 +19,12 @@
 docker run --name cities-db -d -p 5432:5432 -e POSTGRES_USER=postgres_user_city -e POSTGRES_PASSWORD=super_password -e POSTGRES_DB=cities postgres
 ```
 
-### Populate
+### Populate database
 
 * [data](https://github.com/chinnonsantos/sql-paises-estados-cidades/tree/master/PostgreSQL)
 
 ```shell script
-cd ~/workspace/sql-paises-estados-cidades/PostgreSQL
+cd ~/sql-paises-estados-cidades/PostgreSQL
 
 docker run -it --rm --net=host -v $PWD:/tmp postgres /bin/bash
 
@@ -44,7 +44,7 @@ CREATE EXTENSION earthdistance;
 * [postgrescheatsheet](https://postgrescheatsheet.com/#/tables)
 * [datatype-geometric](https://www.postgresql.org/docs/current/datatype-geometric.html)
 
-### Access
+## Database access
 
 ```shell script
 docker exec -it cities-db /bin/bash
@@ -52,7 +52,7 @@ docker exec -it cities-db /bin/bash
 psql -U postgres_user_city cities
 ```
 
-### Query Earth Distance
+## Queries Earth Distance
 
 Point
 ```roomsql
@@ -67,49 +67,12 @@ select earth_distance(
 ) as distance;
 ```
 
-## Spring Boot
+## How to test
 
-* [https://start.spring.io/](https://start.spring.io/)
+### Postman
+Install https://www.postman.com/
 
-+ Java 8
-+ Gradle Project
-+ Jar
-+ Spring Web
-+ Spring Data JPA
-+ PostgreSQL Driver
+### Run API tests
+The file collection `cities-api.postman_collection.json` is in the root of project.
 
-### Spring Data
-
-* [jpa.query-methods](https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods)
-
-### Properties
-
-* [appendix-application-properties](https://docs.spring.io/spring-boot/docs/current/reference/html/appendix-application-properties.html)
-* [jdbc-database-connectio](https://www.codejava.net/java-se/jdbc/jdbc-database-connection-url-for-common-databases)
-
-### Types
-
-* [JsonTypes](https://github.com/vladmihalcea/hibernate-types)
-* [UserType](https://docs.jboss.org/hibernate/orm/3.5/api/org/hibernate/usertype/UserType.html)
-
-## Heroku
-
-* [DevCenter](https://devcenter.heroku.com/articles/getting-started-with-gradle-on-heroku)
-
-## Code Quality
-
-### PMD
-
-+ https://pmd.github.io/pmd-6.8.0/index.html
-
-### Checkstyle
-
-+ https://checkstyle.org/
-
-+ https://checkstyle.org/google_style.html
-
-+ http://google.github.io/styleguide/javaguide.html
-
-```shell script
-wget https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/main/resources/google_checks.xml
-```
+Just import in your Postman and run each of requests.
